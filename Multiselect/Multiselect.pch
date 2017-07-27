@@ -1,0 +1,90 @@
+//
+//  Multiselect.pch
+//  Multiselect
+//
+//  Created by GHZ on 2017/7/24.
+//  Copyright © 2017年 hongzhong. All rights reserved.
+//  
+
+#ifndef Multiselect_pch
+#define Multiselect_pch
+
+#define IOS_VERSION_7_OR_LATER (([UIDevice currentDevice].systemVersion.doubleValue>=7.0)?(YES):(NO))
+
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
+
+/*********** 日志输出宏 ************/
+#ifdef DEBUG
+#define BBLog(format, ...) printf("[%s] %s [第%d行] ----- %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
+#else
+#define BBLog(format, ...)
+#endif
+
+//网络请求出错的情况下的提示语
+
+#define Net_Show_Mes (NetBreak ? @"网络出错了" : @"保宝可能睡着了，请稍后再试")
+
+#define Net_Show_Des (NetBreak ? @"网络出错了" : result[@"resultdesc"])
+
+#import "MJExtension.h"
+
+//定义颜色
+//十六进制颜色值
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
+#define kLoginColor UIColorFromRGB(0x0fb979)
+#define kMainColor UIColorFromRGB(0x16c8a5)
+#define kBackgroundColor UIColorFromRGB(0xf9f9f9)
+#define kNewsColor UIColorFromRGB(0x7a7a7a)
+#define kFontColor UIColorFromRGB(0x333333)
+#define kPhoneColor UIColorFromRGB(0x666666)
+#define kDetailColor UIColorFromRGB(0x999999)
+#define kFengelineColor UIColorFromRGB(0xe5e5e5)
+#define kJiangeColor UIColorFromRGB(0xb2b2b2)
+#define kTemporaryColor UIColorFromRGB(0xd9d9d9)
+#define kClickTemporaryColor UIColorFromRGB(0x00b06e)
+#define kRiceNumColor UIColorFromRGB(0x0fb97a)
+#define kIndexColor UIColorFromRGB(0xcccccc)
+#define kTextFieldColor UIColorFromRGB(0xefeff4)
+#define kHuiHouseColor UIColorFromRGB(0x838383)
+#define kTrendsColor UIColorFromRGB(0xf0f0f0)
+#define KButtonMainColor UIColorFromRGB(0xff9900)
+#define KButtonClickColor UIColorFromRGB(0xf29100)
+#define KPriceColor UIColorFromRGB(0xff6666)
+#define KblackColor UIColorFromRGB(0x000000)
+#define KwhiteColor UIColorFromRGB(0xffffff)
+#define KgreenColor UIColorFromRGB(0x009966)
+#define KbackColor UIColorFromRGB(0xf2f1f1)
+#define KotherCaractorColor UIColorFromRGB(0x9e9e9f)
+#define KPingfenColor UIColorFromRGB(0xf39d00)
+#define KprogressedClolor UIColorFromRGB(0xf39d00)
+#define KprogressColor UIColorFromRGB(0xdbdcdc)
+#define KFontColor UIColorFromRGB(0x4c4c4c)
+
+
+#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size)) : NO)
+#define iPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size)) : NO)
+
+#define kDeviceWidth [UIScreen mainScreen].bounds.size.width
+#define KDeviceHeight [UIScreen mainScreen].bounds.size.height
+
+// 屏幕适配 高/屏幕高
+#define kScreenScaleX kDeviceWidth/375.0
+#define kScreenScaleY KDeviceHeight/667.0
+
+//等待动画
+#define NavWait [self.view.window showJUHUAWithBool:YES andTitle:@"正在加载..." andBackColor:[UIColor colorWithWhite:1 alpha:1] andAlpha:0.00001f isneedAnimation:YES];
+#define NavWaitEnd [self.view.window showJUHUAWithBool:NO andTitle:@"正在加载..." andBackColor:[UIColor colorWithWhite:1 alpha:1] andAlpha:0.00001f isneedAnimation:YES];
+
+#define NavWaitFrom(view) [view showJUHUAWithBool:YES andTitle:@"正在加载..." andBackColor:[UIColor colorWithWhite:1 alpha:1] andAlpha:0.000001f isneedAnimation:YES];
+#define NavWaitEndFrom(view)  [view showJUHUAWithBool:NO andTitle:@"正在加载..." andBackColor:[UIColor colorWithWhite:1 alpha:1] andAlpha:0.00001f isneedAnimation:YES];
+
+//网络判断
+#define NetBreak [CoreStatus currentNetWorkStatus] == CoreNetWorkStatusNone || [CoreStatus currentNetWorkStatus] == CoreNetWorkStatusUnkhow
+#define NetWifi [CoreStatus currentNetWorkStatus] == CoreNetWorkStatusWifi
+#define NetTraffic  ([CoreStatus currentNetWorkStatus] == CoreNetWorkStatusWWAN || [CoreStatus currentNetWorkStatus] == CoreNetWorkStatus2G || [CoreStatus currentNetWorkStatus] == CoreNetWorkStatus3G || [CoreStatus currentNetWorkStatus] == CoreNetWorkStatus4G)
+
+#endif /* Multiselect_pch */
